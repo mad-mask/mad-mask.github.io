@@ -41,20 +41,21 @@ window.addEventListener('scroll', blurHeader)
 
 
 /*=============== EMAIL JS ===============*/
-const contactForm = document.getElementById('contact-form'),
-contactMessage = document.getElementById('contact-message'),
-const sendEmail = (e) =>{
-	e.preventDefault()
+const contactForm = document.getElementById('contact-form');
+const contactMessage = document.getElementById('contact-message');
+
+const sendEmail = (e) => {
+    e.preventDefault();
 	
 	// serviceID - templateID - #form - publicKey
 	emailjs.sendForm('service_5a6zu0c', 'template_oj2bz0p','#contact-form','5O8iRNVFb6tp51ckr')
 	.then(() =>{ 
 		// Show sent message
-		contactMessage.textContent = 'Message sent successfully✅'
+		contactMessage.textContent = 'Message sent successfully✅';
 		
 		// Remove message after five seconds
 		setTimeout(()=>{
-			contactMessage.textContent = ''
+			contactMessage.textContent = '';
 			}, 5000)
 			
 			// Clear input fields
@@ -63,7 +64,7 @@ const sendEmail = (e) =>{
 		
 		}, () => {
 			// Show error message
-			contactMessage.textContent = 'Message not sent (service error)❌'
+			contactMessage.textContent = 'Message not sent (service error)❌';
 			});
 	}
 	contactForm.addEventListener('submit', sendEmail)
