@@ -210,6 +210,39 @@
   <script src=""></script> <!--=============== EMAIL JS ===============-->
    
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script> 
+
+<script>
+	
+	const contactForm = document.getElementById("contact-form");
+const contactMessage = document.getElementById("contact-message");
+
+const sendEmail = (e) => {
+    e.preventDefault();
+	
+	// serviceID - templateID - #form - publicKey
+	emailjs.sendForm('service_7ne996c', 'template_ng0qlae','#contact-form','5O8iRNVFb6tp51ckr')
+	.then(() =>{ 
+		// Show sent message
+		contactMessage.textContent = 'Message sent successfully✅';
+		
+		// Remove message after five seconds
+		setTimeout(()=>{
+			contactMessage.textContent = '';
+			}, 5000)
+			
+			// Clear input fields
+			
+			contactForm.reset()
+		
+		}, () => {
+			// Show error message
+			contactMessage.textContent = 'Message not sent (service error)❌';
+			});
+	}
+	contactForm.addEventListener('submit', sendEmail)
+	
+	</script>
+
   
 <!--=============== MAIN JS ===============-->
    
